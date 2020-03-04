@@ -1,91 +1,35 @@
-const lost = require( 'lost' )
-const pxtorem = require( 'postcss-pxtorem' )
+const lost = require('lost')
+const pxtorem = require('postcss-pxtorem')
+
+const url = 'https://lumen.netlify.com'
 
 module.exports = {
   siteMetadata: {
-    url: 'https://www.regyu.dev/',
-    siteUrl: 'https://www.regyu.dev/',
-    title: 'Regyu Dev log',
+    url,
+    siteUrl: url,
+    title: 'Blog by John Doe',
     subtitle:
-      '리규의 흐릿한 잉크 남기기',
+      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
     copyright: '© All rights reserved.',
-    disqusShortname: 'regyu',
+    disqusShortname: 'treasureb',
     menu: [
       {
-        label: 'All',
-        path: '/'
+        label: 'Articles',
+        path: '/',
       },
       {
         label: 'About me',
         path: '/about/',
       },
       {
-        label: 'CS',
-        path: '/cs/',
-        sub_menu: [
-          // {
-          //   label: 'algorithm',
-          //   path: '/algorithm/',
-          // },
-          {
-            label: 'data structure',
-            path: '/data-structure/',
-          },
-          // {
-          //   label: 'network',
-          //   path: '/network/',
-          // },
-          // {
-          //   label: 'operate system',
-          //   path: '/operate system/',
-          // },
-          // {
-          //   label: 'system Programming',
-          //   path: '/system Programming/',
-          // },
-        ]
-      },
-      {
-        label: 'ETC',
-        path: '/etc/',
-        sub_menu: [
-          {
-            label: 'blog',
-            path: '/blog/',
-          },
-          {
-            label: 'css',
-            path: '/css/',
-          },
-          {
-            label: 'design pattern',
-            path: '/design-pattern/',
-          },
-          {
-            label: 'java',
-            path: '/java/',
-          },
-          {
-            label: 'js',
-            path: '/js/',
-          },
-        ]
-      },
-      {
-        label: 'Tags',
-        path: '/tags',
+        label: 'Contact me',
+        path: '/contact/',
       },
     ],
     author: {
-      name: 'Regyu',
-      email: 'kuhyun1993@gmail.com',
-      telegram: '#',
-      twitter: '#',
-      github: '/Jo-GyuHyeon',
-      rss: 'rss.xml',
-      vk: '#',
-      facebook: 'regyujo',
-      tistory: 'regyu.tistory.com/'
+      name: 'Choiwono',
+      email: 'treasureb1220@gmail.com',
+      github: '/choiwono',
     },
   },
   plugins: [
@@ -97,13 +41,19 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `treasureb` // 이부분 수정
+      }
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
             site {
               siteMetadata {
-                site_url: url
+                url
                 title
                 description: subtitle
               }
@@ -112,15 +62,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ( { query: { site, allMarkdownRemark } } ) =>
-              allMarkdownRemark.edges.map( edge =>
-                Object.assign( {}, edge.node.frontmatter, {
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              allMarkdownRemark.edges.map(edge =>
+                Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.frontmatter.description,
                   date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.site_url + edge.node.fields.slug,
-                  guid: site.siteMetadata.site_url + edge.node.fields.slug,
+                  url: site.siteMetadata.url + edge.node.fields.slug,
+                  guid: site.siteMetadata.url + edge.node.fields.slug,
                   custom_elements: [{ 'content:encoded': edge.node.html }],
-                } )
+                })
               ),
             query: `
               {
@@ -176,7 +126,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: 'UA-135100027-1' },
+      options: { trackingId: 'UA-73379983-2' },
     },
     {
       resolve: 'gatsby-plugin-google-fonts',
@@ -185,51 +135,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        query: `
-            {
-              site {
-                siteMetadata {
-                  url,
-                  siteUrl
-                }
-              }
-              allSitePage(
-                filter: {
-                  path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
-                }
-              ) {
-                edges {
-                  node {
-                    path
-                  }
-                }
-              }
-          }`,
-        output: '/sitemap.xml',
-        serialize: ( { site, allSitePage } ) =>
-          allSitePage.edges.map( edge => {
-            return {
-              url: site.siteMetadata.url + edge.node.path,
-              changefreq: 'daily',
-              priority: 0.7,
-            }
-          } ),
-      },
-    },
-    {
       resolve: `gatsby-plugin-disqus`,
       options: {
         shortname: `treasureb`
       }
     },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        output: '/robots.txt',
-      }
-    },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
@@ -238,7 +149,7 @@ module.exports = {
       options: {
         postCssPlugins: [
           lost(),
-          pxtorem( {
+          pxtorem({
             rootValue: 16,
             unitPrecision: 5,
             propList: [
@@ -264,7 +175,7 @@ module.exports = {
             replace: true,
             mediaQuery: false,
             minPixelValue: 0,
-          } ),
+          }),
         ],
         precision: 8,
       },
