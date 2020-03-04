@@ -11,7 +11,7 @@ module.exports = {
     subtitle:
       'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
     copyright: '© All rights reserved.',
-    disqusShortname: '',
+    disqusShortname: 'treasureb',
     menu: [
       {
         label: 'Articles',
@@ -28,12 +28,9 @@ module.exports = {
     ],
     author: {
       name: 'John Doe',
-      email: '#',
+      email: 'treasureb1220@gmail.com',
       telegram: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#',
-      vk: '#',
+      github: 'http://github.com/choiwono',
     },
   },
   plugins: [
@@ -43,6 +40,12 @@ module.exports = {
         path: `${__dirname}/src/pages`,
         name: 'pages',
       },
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `treasureb` // 이부분 수정
+      }
     },
     {
       resolve: 'gatsby-plugin-feed',
