@@ -1,0 +1,46 @@
+title:              T3Q Platform Blog
+email:              t3qplatform@t3q.com
+description:        T3Q Platform Blog
+author:             T3Q Platform Team
+baseurl:            "/"
+url:                "https://lab.t3q.co.kr:9999/t3q-platform-team/blog"
+
+# Social Profiles
+twitter_username:   
+github_username:    
+facebook_username:  
+linkedin_username:
+
+# Add your google-analytics ID here to activate google analytics
+#google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+
+collections:
+  authors:
+    output: true
+  systems:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
