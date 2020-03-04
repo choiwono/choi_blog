@@ -27,7 +27,7 @@ module.exports = {
       },
     ],
     author: {
-      name: 'John Doe',
+      name: 'Choi wono',
       email: 'treasureb1220@gmail.com',
       telegram: '#',
       github: 'http://github.com/choiwono',
