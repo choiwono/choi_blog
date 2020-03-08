@@ -22,8 +22,6 @@ class Links extends React.Component {
               <i className="icon-github" />
             </a>
           </li>
-        </ul>
-        <ul className="links__list">
           <li className="links__list-item">
             <a href={`mailto:${links.email}`}>
               <i className="icon-mail" />
