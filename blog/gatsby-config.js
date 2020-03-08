@@ -1,15 +1,15 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://lumen.netlify.com'
+const url = 'https://treasureb.netlify.com/'
 
 module.exports = {
   siteMetadata: {
     url,
     siteUrl: url,
-    title: 'Blog by John Doe',
+    title: 'Blog by Choiwono',
     subtitle:
-      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+      '학습내용을 공유하고, 새로운 기술을 시도하는 걸 좋아합니다.',
     copyright: '© All rights reserved.',
     disqusShortname: 'treasureb',
     menu: [
@@ -41,10 +41,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-disqus`,
+      resolve: 'gatsby-plugin-disqus',
       options: {
-        shortname: `treasureb` // 이부분 수정
-      }
+        shortname: 'treasureb',
+      },
     },
     {
       resolve: 'gatsby-plugin-feed',
@@ -135,10 +135,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-disqus`,
+      resolve: 'gatsby-plugin-disqus',
       options: {
-        shortname: `treasureb`
-      }
+        shortname: 'treasureb',
+      },
     },
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
